@@ -31,13 +31,6 @@ export class App extends Component {
     if (prevContacts !== nextContacts) {
       localStorage.setItem(LS_KEY, JSON.stringify(nextContacts));
     }
-
-    if (
-      nextContacts.length > prevContacts.length &&
-      (prevContacts.length !== 0 || nextContacts.length === 1)
-    ) {
-      this.toggleModal();
-    }
   }
 
   getFilteredValue = filterValue => {
@@ -64,6 +57,8 @@ export class App extends Component {
     this.setState(({ contacts }) => ({
       contacts: [...contacts, { ...data, id }],
     }));
+
+    this.toggleModal();
   };
 
   editContact = data => {
